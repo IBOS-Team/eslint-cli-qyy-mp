@@ -18,14 +18,19 @@ let pkg = fs.existsSync(packagePath) ? JSON.parse(fs.readFileSync(packagePath, '
 }
 
 // 配置 sh
-if(Array.isArray(pkg['pre-commit']) && !pkg['pre-commit'].includes('eslint')) {
-  pkg['pre-commit'].push('eslint')
-} else {
-  pkg['pre-commit'] = ['eslint']
-}
+// if(Array.isArray(pkg['pre-commit']) && !pkg['pre-commit'].includes('eslint')) {
+//   pkg['pre-commit'].push('eslint')
+// } else {
+//   pkg['pre-commit'] = ['eslint']
+// }
+
+pkg['lint-staged'] = Object.assign({}, pkg['lint-staged'], {
+  '*.js': ['eslint --fix', 'git add']
+})
 
 pkg.scripts = Object.assign({}, pkg.scripts, {
-  'eslint': './node_modules/.bin/eslint **/*.js'
+  // 'eslint': './node_modules/.bin/eslint **/*.js'
+  'precommit': 'lint-staged'
 })
 
 fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2), 'utf-8')
@@ -43,7 +48,9 @@ console.log('配置完成，开始安装相关依赖')
 let devDependencies = [
   'eslint@^4.13.0',
   'https://github.com/IBOS-team/eslint-config-qyy-mp.git',
-  'pre-commit@^1.2.2'
+  'husky': '^0.14.3',
+  'lint-staged': '^6.0.0'
+  // 'pre-commit@^1.2.2'
 ]
 
 let argv = 'install -D ' + devDependencies.join(' ')
