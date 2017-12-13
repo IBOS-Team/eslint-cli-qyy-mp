@@ -15,8 +15,12 @@ cnpm i -g https://github.com/IBOS-Team/eslint-cli-qyy-mp.git
 ```powershell
 eslint-qyy-mp
 ```
+---
 
+### TODO
+- [ ] pre-commit 只检查发生修改的文件
 
+---
 
 > Standard
 > https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md
