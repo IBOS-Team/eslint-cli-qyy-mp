@@ -48,8 +48,8 @@ console.log('配置完成，开始安装相关依赖')
 let devDependencies = [
   'eslint@^4.13.0',
   'https://github.com/IBOS-team/eslint-config-qyy-mp.git',
-  'husky': '^0.14.3',
-  'lint-staged': '^6.0.0'
+  'husky@^0.14.3',
+  'lint-staged@^6.0.0'
   // 'pre-commit@^1.2.2'
 ]
 
