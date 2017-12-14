@@ -25,7 +25,7 @@ let pkg = fs.existsSync(packagePath) ? JSON.parse(fs.readFileSync(packagePath, '
 // }
 
 pkg['lint-staged'] = Object.assign({}, pkg['lint-staged'], {
-  '*.js': ['eslint --fix', 'git add']
+  '*.js': ['./node_modules/.bin/eslint --fix', 'git add']
 })
 
 pkg.scripts = Object.assign({}, pkg.scripts, {
