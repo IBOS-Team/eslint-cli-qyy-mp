@@ -30,7 +30,15 @@ pkg['lint-staged'] = Object.assign({}, pkg['lint-staged'], {
 
 pkg.scripts = Object.assign({}, pkg.scripts, {
   // 'eslint': './node_modules/.bin/eslint **/*.js'
-  'precommit': 'lint-staged'
+  "commit": "git-cz",
+  'precommit': 'lint-staged',
+  "release": "standard-version"
+})
+
+pkg.husky = Object.assign({}, pkg.husky, {
+  "hooks": {
+    "commit-msg": "commitlint -e $GIT_PARAMS"
+  }
 })
 
 fs.writeFileSync(packagePath, JSON.stringify(pkg, null, 2), 'utf-8')
@@ -44,12 +52,18 @@ fs.readdirSync(templatePath).forEach(filename => {
 console.log('配置完成，开始安装相关依赖')
 
 // 安装依赖
-// 配置依赖 eslint eslint-config-qyy-mp pre-commit
+// 配置依赖 eslint eslint-config-qyy-mp pre-commit commitlint
 let devDependencies = [
   'eslint@^4.13.0',
   'https://github.com/IBOS-team/eslint-config-qyy-mp.git',
-  'husky@^0.14.3',
-  'lint-staged@^6.0.0'
+  'husky',
+  'commitizen',
+  'cz-customizable',
+  'cz-conventional-changelog',
+  'lint-staged@^6.0.0',
+  '@commitlint/cli',
+  '@commitlint/config-conventional',
+  'standard-version'
   // 'pre-commit@^1.2.2'
 ]
 

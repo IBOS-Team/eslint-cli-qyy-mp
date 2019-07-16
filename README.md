@@ -17,6 +17,10 @@ eslint-qyy-mp
 ```
 ---
 
+### 已实现
+- [x] pre-commit 校验js文件
+- [x] commit log 验证格式
+
 ### TODO
 - [ ] pre-commit 只检查发生修改的文件
 
